@@ -1,0 +1,47 @@
+<%- include ("partials/header") %>
+
+  <title>Desafio mySQL</title>
+</head>
+<body>
+<div class="container">
+  <form action="/" method="post" class="my-2">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="nome_input">Nome do time</label>
+        <input type="text" class="form-control" name="nome_input" id="nome_input" placeholder="Digite o nome do time..." required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="estado_input">Estado</label>
+        <input type="text" class="form-control" name="estado_input" id="estado_input" placeholder="Digite o estado..." required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="ano_input">Ano</label>
+      <input type="number" class="form-control" name="ano_input" id="ano_input" placeholder="Digite o ano de criação..." required>
+    </div>
+    <button type="submit" class="btn btn-dark">Cadastrar</button>
+  </form>
+
+  <table class="table mx-auto my-4">
+    <thead class="bg-dark text-light">
+      <tr>
+        <th>Nome do time</th>
+        <th>Estado</th>
+        <th>Ano</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% times.forEach((time, index) => { %>
+        <tr>
+          <td><%= time.nome %></td>
+          <td><%= time.estado %></td>
+          <td><%= time.ano %></td>
+          <td><form action="/delete/<%= time.nome %>" method="POST"><button type="submit"><i class="fa fa-times"></i></button></form></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</div>
+
+<%- include ("partials/footer") %>
